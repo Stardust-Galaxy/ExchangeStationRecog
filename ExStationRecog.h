@@ -66,7 +66,7 @@ private:
 	
 	cv::Mat CameraMatrix;
 
-	cv::Mat solveAngle();
+	cv::Vec3d solveAngle();
 	
 	bool compareByRelativeAngle(const candidateContour& a, const candidateContour& b, const cv::Point2f& center);
 

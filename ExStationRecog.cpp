@@ -78,7 +78,7 @@ ExchangeStationRecog::ExchangeStationRecog(cv::Mat& source) {
 
 
 
-cv::Mat ExchangeStationRecog::solveAngle()
+cv::Vec3d ExchangeStationRecog::solveAngle()
 {
     double size = 250;
     std::vector<cv::Point3f> ExStationPos = { cv::Point3f(125, 125,0),
@@ -94,12 +94,8 @@ cv::Mat ExchangeStationRecog::solveAngle()
     cv::Mat rotationVector;
     cv::Rodrigues(rVec, rotationVector);
 
-    cv::Mat eulerAngle;
-    cv::Rodrigues(rotationVector, eulerAngle, cv::noArray());
-
-    eulerAngle *= 180.0 / CV_PI;
-
-    return eulerAngle;
+    cv::Vec3d eulerAngles = cv::RQDecomp3x3(rotationVector, cv::noArray(), cv::noArray());
+    return eulerAngles;
 }
 
 
