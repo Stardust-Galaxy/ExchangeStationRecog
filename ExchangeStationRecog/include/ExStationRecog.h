@@ -29,6 +29,8 @@ public:
 	void selectContours();
 
 	void getCorners();
+
+	cv::Vec3d solveAngle();
 	
 	void show();
 private:
@@ -66,8 +68,6 @@ private:
 	cv::Mat DistortionCoeff;
 	
 	cv::Mat CameraMatrix;
-
-	cv::Vec3d solveAngle();
 	
 	bool compareByRelativeAngle(const candidateContour& a, const candidateContour& b, const cv::Point2f& center);
 

@@ -1,6 +1,7 @@
 #include "ExStationRecog.h"
-#include "../hikvision/include/hikvision_camera.h"
-
+#include "../../hikvision/include/hikvision_camera.h"
+#include "../../GxCamera/GxCamera.h"
+/*
 int main() {
     bool from_camera = true;    //determine the sourceImg
     camera::HikCamera Camera;
@@ -47,7 +48,44 @@ int main() {
 
     return 0;
 }
+*/
+int main() {
+    ExchangeStationRecog solver = ExchangeStationRecog();
+    bool useCamera = true;
+    cv::Mat sourceImg;
+    GxCamera camera;
+    cv::VideoCapture capture;
+    if(useCamera) {
+        GX_STATUS status = camera.initLib( );
+        GX_VERIFY(status);
+        camera.setRoiParam(1280,1024,0,0);
+        camera.setExposureParam(5000,false,10000,30000);
+        camera.setGainParam(8,false,0,10);
+        camera.setWhiteBalanceOn(true);
+        
+        status = camera.startAcquiring();
+        GX_VERIFY(status);
 
+        while(true) {
+            status = camera.snapCvMat(sourceImg);
+            if(status != GX_STATUS_SUCCESS) {
+                GetErrorString(status);
+                continue;
+            }
+            solver.getImage(sourceImg);
+            solver.selectContours();
+            solver.getCorners();
+            solver.solveAngle();
+        }
+        status = camera.stopAcquiring();
+        GX_VERIFY(status);
+    }
+    else {
+        std::string fileName = "";
+        capture.open(fileName);
+    }
+
+}
 /*
 int main() {
     cv::Mat image = cv::imread("test18.png");

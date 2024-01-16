@@ -1,4 +1,4 @@
-#include "ExStationRecog.h"
+#include "../include/ExStationRecog.h"
 
 // helper method
 cv::Point2f ExchangeStationRecog::computeCentroid(const std::vector<candidateContour>& candidates) {
@@ -95,6 +95,7 @@ cv::Vec3d ExchangeStationRecog::solveAngle()
     cv::Rodrigues(rVec, rotationVector);
 
     cv::Vec3d eulerAngles = cv::RQDecomp3x3(rotationVector, cv::noArray(), cv::noArray());
+    std::cout << "EulerAngle(pitch,yaw,roll)" << eulerAngles << std::endl;
     return eulerAngles;
 }
 
