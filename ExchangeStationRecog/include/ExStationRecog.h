@@ -14,7 +14,7 @@
 #include <opencv2/calib3d/calib3d.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
-
+#include "../../Serial/include/packet.hpp"
 //  Use a struct to make sure the contour & point in the same order, so that pnp can work
 
 class ExchangeStationRecog {
@@ -30,7 +30,7 @@ public:
 
 	void getCorners();
 
-	cv::Vec3d solveAngle();
+	Packet solveAngle();
 	
 	void show();
 private:
@@ -44,6 +44,9 @@ private:
 			this->contour = contour;
 		}
 	};
+
+	int redThreshold = 150;
+	int blueThreshold = 80;
 
 	cv::Mat source;
 	

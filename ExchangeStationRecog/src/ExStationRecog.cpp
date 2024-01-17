@@ -45,7 +45,7 @@ void ExchangeStationRecog::getImage(cv::Mat& source) {
     //cv::imshow("pro", mergedChannels);
     //cv::waitKey(0);
     //cv::Mat binaryResult;
-    cv::threshold(grayImg, binaryResult, 80, 255, cv::THRESH_BINARY);
+    cv::threshold(grayImg, binaryResult, redThreshold, 255, cv::THRESH_BINARY);
 
     int windowWidth = 800;
     int windowHeight = 600;
@@ -78,13 +78,16 @@ ExchangeStationRecog::ExchangeStationRecog(cv::Mat& source) {
 
 
 
-cv::Vec3d ExchangeStationRecog::solveAngle()
+Packet ExchangeStationRecog::solveAngle()
 {
-    double size = 250;
-    std::vector<cv::Point3f> ExStationPos = { cv::Point3f(125, 125,0),
-                                              cv::Point3f(125, -125,0),
-                                              cv::Point3f(-125, -125,0),
-                                              cv::Point3f(-125, 125,0) };
+    if(found == false) {
+        return Packet();
+    }
+    double size = 320;
+    std::vector<cv::Point3f> ExStationPos = { cv::Point3f(size / 2, -size / 2,0),
+                                              cv::Point3f(size / 2, size / 2,0),
+                                              cv::Point3f(-size / 2, size / 2,0),
+                                              cv::Point3f(-size / 2, -size / 2,0) };
     std::vector<cv::Point2f> realPos = { this->corners[0].corner,
                                          this->corners[1].corner, 
                                          this->corners[2].corner, 
@@ -96,7 +99,12 @@ cv::Vec3d ExchangeStationRecog::solveAngle()
 
     cv::Vec3d eulerAngles = cv::RQDecomp3x3(rotationVector, cv::noArray(), cv::noArray());
     std::cout << "EulerAngle(pitch,yaw,roll)" << eulerAngles << std::endl;
-    return eulerAngles;
+    Packet packet;
+    packet.pitch = eulerAngles[0];
+    packet.yaw = eulerAngles[1];
+    packet.roll = eulerAngles[2];
+    packet.found = true;
+    return packet;
 }
 
 
