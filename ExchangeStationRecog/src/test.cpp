@@ -1,4 +1,4 @@
-#include "ExStationRecog.h"
+#include "../include/ExStationRecog.h"
 #include "../../hikvision/include/hikvision_camera.h"
 #include "../../GxCamera/GxCamera.h"
 /*
@@ -58,6 +58,10 @@ int main() {
     if(useCamera) {
         GX_STATUS status = camera.initLib( );
         GX_VERIFY(status);
+
+        status = camera.openDeviceByIndex("1");
+        GX_VERIFY(status);
+        
         camera.setRoiParam(1280,1024,0,0);
         camera.setExposureParam(5000,false,10000,30000);
         camera.setGainParam(8,false,0,10);

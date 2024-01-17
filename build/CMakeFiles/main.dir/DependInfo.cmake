@@ -1,22 +1,16 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "CXX"
   )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/jlurobovision/Desktop/ExchangeStationRecog/ExchangeStationRecog/ExStationRecog.cpp" "/home/jlurobovision/Desktop/ExchangeStationRecog/build/CMakeFiles/main.dir/ExchangeStationRecog/ExStationRecog.cpp.o"
-  "/home/jlurobovision/Desktop/ExchangeStationRecog/ExchangeStationRecog/test.cpp" "/home/jlurobovision/Desktop/ExchangeStationRecog/build/CMakeFiles/main.dir/ExchangeStationRecog/test.cpp.o"
-  "/home/jlurobovision/Desktop/ExchangeStationRecog/hikvision/src/hikvision_camera.cpp" "/home/jlurobovision/Desktop/ExchangeStationRecog/build/CMakeFiles/main.dir/hikvision/src/hikvision_camera.cpp.o"
-  "/home/jlurobovision/Desktop/ExchangeStationRecog/hikvision/tool/src/debug/camera_parms_debug.cpp" "/home/jlurobovision/Desktop/ExchangeStationRecog/build/CMakeFiles/main.dir/hikvision/tool/src/debug/camera_parms_debug.cpp.o"
-  )
-set(CMAKE_CXX_COMPILER_ID "GNU")
 
-# The include file search paths:
-set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "../hikvision/include"
-  "../hikvision/tool/include"
-  "/usr/local/include/opencv4"
-  "/usr/include/eigen3"
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/stardust/Desktop/ExchangeStationRecog/ExchangeStationRecog/src/ExStationRecog.cpp" "CMakeFiles/main.dir/ExchangeStationRecog/src/ExStationRecog.cpp.o" "gcc" "CMakeFiles/main.dir/ExchangeStationRecog/src/ExStationRecog.cpp.o.d"
+  "/home/stardust/Desktop/ExchangeStationRecog/ExchangeStationRecog/src/test.cpp" "CMakeFiles/main.dir/ExchangeStationRecog/src/test.cpp.o" "gcc" "CMakeFiles/main.dir/ExchangeStationRecog/src/test.cpp.o.d"
+  "/home/stardust/Desktop/ExchangeStationRecog/GxCamera/GxCamera.cpp" "CMakeFiles/main.dir/GxCamera/GxCamera.cpp.o" "gcc" "CMakeFiles/main.dir/GxCamera/GxCamera.cpp.o.d"
   )
 
 # Targets to which this target links.
