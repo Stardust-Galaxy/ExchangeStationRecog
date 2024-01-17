@@ -114,7 +114,7 @@ Packet ExchangeStationRecog::solveAngle()
 void ExchangeStationRecog::selectContours() {
     found = false; //Reset state
     currentFrameSmallSquares.clear();
-	double minArea = 300, maxArea = 3000; // For a single contour
+	double minArea = 300, maxArea = 1000; // For a single contour
 	double maxRatio = 4.5; // For a single contour : width / height
     double minDis = 0, maxDis = 400; // Compare between contours
     double minAreaRatio = 0.1, maxAreaRatio = 10; // Compare between contours
